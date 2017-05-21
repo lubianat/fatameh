@@ -4,6 +4,7 @@ from django.http import JsonResponse
 import pprint, os
 from wikidataintegrator import wdi_core, wdi_login, wdi_helpers
 from requests_oauthlib import OAuth1
+from django.conf import settings
 
 
 
@@ -26,8 +27,8 @@ def add(request, item):
     social = request.user.social_auth.get(provider="mediawiki")
     token = social.extra_data['access_token']['oauth_token']
     usersecret = social.extra_data['access_token']['oauth_token_secret']
-    mediawiki_key = os.environ.get('mediawiki_key')
-    mediawiki_secret = os.environ.get('mediawiki_secret')
+    mediawiki_key = settings.SOCIAL_AUTH_MEDIAWIKI_KEY
+    mediawiki_secret = SOCIAL_AUTH_MEDIAWIKI_SECRET
     login_instance = wdi_login.WDLogin(consumer_key=mediawiki_key,
                                        consumer_secret=mediawiki_secret)
     login_instance.s.auth = OAuth1(mediawiki_key,
