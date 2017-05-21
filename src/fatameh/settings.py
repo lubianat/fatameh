@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'p1l3d&7ne-c(t-xrrn5vljz^ru248!(zojh@97th(xpo26q==2'
+SECRET_KEY = os.environ.get('django_secret')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -111,10 +111,10 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-SOCIAL_AUTH_MEDIAWIKI_KEY = ''
-SOCIAL_AUTH_MEDIAWIKI_SECRET = ''
+SOCIAL_AUTH_MEDIAWIKI_KEY = os.environ.get('mediawiki_key')
+SOCIAL_AUTH_MEDIAWIKI_SECRET = os.environ.get('mediawiki_secret')
 SOCIAL_AUTH_MEDIAWIKI_URL = 'https://meta.wikimedia.org/w/index.php'
-SOCIAL_AUTH_MEDIAWIKI_CALLBACK = 'http://127.0.0.1:8080/oauth/complete/mediawiki/'
+SOCIAL_AUTH_MEDIAWIKI_CALLBACK = os.environ.get('mediawiki_callback')
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
