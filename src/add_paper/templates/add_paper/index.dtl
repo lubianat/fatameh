@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <body>
-  <h1>My first Django OAuth app</h1>
-  <a href="{% url 'profile' %}">Profile</a>
+  <h1>Fatameh</h1>
+  <a href="{% url 'profile' %}">Log in</a>
+  <br>
+  <p>Add items by PMID by visiting: http://tools.wmflabs.org/fatameh/add/*Your PMID*</p>
 </body>
 </html>

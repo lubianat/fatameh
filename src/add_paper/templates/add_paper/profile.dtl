@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <body>
-  <h1>Profile</h1>
+  <h1>You've authenticated as:</h1>
   {{ user }}
 </body>
 </html>
