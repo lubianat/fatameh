@@ -1,9 +1,19 @@
 <!DOCTYPE html>
 <html>
-<body>
+  <body>
+    <script type="text/javascript">
+function setSearchTermSN(n){
+   var SN_VALUE = encodeURIComponent(document.getElementById("sn").value);
+   location.href = "add/"+SN_VALUE;
+ }
+</script>
   <h1>Fatameh</h1>
   <a href="{% url 'profile' %}">Log in</a>
   <br>
   <p>Add items by PMID by visiting: http://tools.wmflabs.org/fatameh/add/*Your PMID*</p>
+<form target="_blank">
+PMID: <input id="sn" type="text" value="" />
+<input type="button" value="Go" onclick="setSearchTermSN()" />
+</form>
 </body>
 </html>
