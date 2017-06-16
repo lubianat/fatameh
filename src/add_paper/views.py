@@ -22,7 +22,7 @@ def login_oauth(request):
     return render(request, 'add_paper/login.dtl', context)
 
 @login_required()
-def add(request, item):
+def add(request, item, type="MED"):
     context = {}
     social = request.user.social_auth.get(provider="mediawiki")
     token = social.extra_data['access_token']['oauth_token']
@@ -36,5 +36,13 @@ def add(request, item):
                                    resource_owner_key=token,
                                    resource_owner_secret=usersecret)
     login_instance.generate_edit_credentials()
-    item=wdi_helpers.PubmedItem(item)
+    item=wdi_helpers.PubmedItem(item, id_type=type)
     return JsonResponse({"item": item.get_or_create(login_instance)})
+
+
+def addPMID(request, item):
+    return add(request, item)
+
+
+def addPMCID(request, item):
+    return add(request, item, type="PMC")
