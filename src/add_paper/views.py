@@ -5,6 +5,8 @@ import pprint, os
 from wikidataintegrator import wdi_core, wdi_login, wdi_helpers
 from requests_oauthlib import OAuth1
 from django.conf import settings
+from rest_framework.authtoken.models import Token
+from rest_framework.decorators import api_view
 
 
 
@@ -14,14 +16,18 @@ def index(request):
 
 @login_required()
 def profile(request):
-    context = {}
+    context = {
+        'token': Token.objects.get_or_create(user=request.user)[0]
+    }
+    print(Token.objects.get_or_create(user=request.user))
     return render(request,'add_paper/profile.dtl', context)
 
 def login_oauth(request):
     context = {}
     return render(request, 'add_paper/login.dtl', context)
 
-@login_required()
+
+
 def add(request, item, type="MED"):
     context = {}
     social = request.user.social_auth.get(provider="mediawiki")
@@ -39,10 +45,18 @@ def add(request, item, type="MED"):
     item=wdi_helpers.PubmedItem(item, id_type=type)
     return JsonResponse({"item": item.get_or_create(login_instance)})
 
-
+@login_required()
 def addPMID(request, item):
     return add(request, item)
 
-
+@login_required()
 def addPMCID(request, item):
     return add(request, item, type="PMC")
+
+@api_view(['GET'])
+def tokenAddPMCID(request, item):
+    return add(request, item, type="PMC")
+
+@api_view(['GET'])
+def tokenAddPMID(request, item):
+    return add(request, item)

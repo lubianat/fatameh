@@ -8,12 +8,26 @@ function setSearchTermSN(n){
  }
 </script>
   <h1>Fatameh</h1>
+
+  To use the tool you need to log in with Wikimedia's OAuth
   <a href="{% url 'profile' %}">Log in</a>
   <br>
-  <p>Add items by PMID by visiting: http://tools.wmflabs.org/fatameh/add/*Your PMID*</p>
+  <p>Once logged in add items by PMID by visiting: http://tools.wmflabs.org/fatameh/pmid/add/*Your PMID*</p>
+  <p>You can use the same type of URL to add items by PMCID: http://tools.wmflabs.org/fatameh/pmc/add/*Your PMCID*</p>
+
+  <p>Alternatively you can use this form to add by PMID (it just goes to the url)</p>
 <form target="_blank">
 PMID: <input id="sn" type="text" value="" />
 <input type="button" value="Go" onclick="setSearchTermSN()" />
 </form>
+
+<p>If you want to batch add items then you may want to use fatemeh form the commandline or an application other than the browser.
+To do this you need to make a GET request to the same urls prefixed by '/token/'.
+You also need to set the HTTP Authorization Header to 'Token &lt my token &gt'. You can your token on the login page.
+Obviously whoever has this token can add items with as your user so keep this secret.</p>
+
+<p>For example to do this with cURL you may run: curl --header "Authorization: Token mysupersecrettoken123456" tools.wmflabs.org/fatameh/token/pmc/add/PMC987654</p>
+
+
 </body>
 </html>
