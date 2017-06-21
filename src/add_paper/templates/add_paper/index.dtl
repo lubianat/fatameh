@@ -28,6 +28,7 @@ Obviously whoever has this token can add items with as your user so keep this se
 
 <p>For example to do this with cURL you may run: curl --header "Authorization: Token mysupersecrettoken123456" tools.wmflabs.org/fatameh/token/pmc/add/PMC987654</p>
 
+<p>For more information see the documentation here: <a href="https://www.wikidata.org/wiki/Wikidata:WikiProject_Source_MetaData/fatameh">https://www.wikidata.org/wiki/Wikidata:WikiProject_Source_MetaData/fatameh</a></p>
 
 </body>
 </html>
