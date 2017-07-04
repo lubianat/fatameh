@@ -21,4 +21,4 @@ six==1.10.0
 social-auth-app-django==1.2.0
 social-auth-core==1.3.0
 urllib3==1.21.1
--e git://github.com/tarrow/wikidataintegrator.git@41344419296e0341d69f0ed524c1e43bc8ae9b54#egg=wikidataintegrator
+wikidataintegrator==0.0.415
