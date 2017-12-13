@@ -43,7 +43,9 @@ def add(request, item, type="MED"):
                                    resource_owner_secret=usersecret)
     login_instance.generate_edit_credentials()
     item=wdi_helpers.PubmedItem(item, id_type=type)
-    return JsonResponse({"item": item.get_or_create(login_instance)})
+    item_string=item.get_or_create(login_instance)
+    print(item.errors)
+    return JsonResponse({"item": item_string, "error": item.errors})
 
 @login_required()
 def addPMID(request, item):
